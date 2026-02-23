@@ -1,0 +1,14 @@
+services:
+  konsulent-api:
+    build: ./konsulent-api
+    ports:
+      - "8000:8000"
+
+  llm-verktøy-api:
+    build: ./llm-verktøy-api
+    environment:
+      - KONSULENT_API_BASE=http://konsulent-api:8000
+    depends_on:
+      - konsulent-api
+    ports:
+      - "8001:8001"
